@@ -1,0 +1,62 @@
+#gpt-response {
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #ddd;
+}
+
+/* Make the probability input show a percentage sign */
+
+
+.input_wrapper{
+    display: flex;
+    gap: 10px;
+}
+
+.probability {
+    max-width: 100px;
+}
+
+.input_wrapper::after {
+    content: "%";
+}
+
+.input_wrapper input {
+    flex-grow: 1;
+}
+
+.invalid {
+    border-color: #f00000;
+    border-style: solid;
+}
+
+.model-response {
+    text-decoration: underline;
+}
+
+.loader {
+    animation: pulse 2s infinite;
+}
+
+.correctness {
+    display: flex;
+}
+
+.correctness > * {
+    flex-grow: 1;
+}
+
+ol.alphabetical {
+    list-style-type: lower-alpha;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
