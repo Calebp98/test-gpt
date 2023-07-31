@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test GPT-4</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://unpkg.com/concrete.css@2.0.3/concrete.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+
+</head>
+
+<body>
+    <main>
+        <h1>Welcome to AI Explained</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dataset">Dataset Questions</a>
+            <a href="/custom">Custom Questions</a>
+        </nav>
+   
+
+    <h2>What is AI?</h2>
+
+    Please select your background:
+- I don't have much of a technical background at all. Please explain things in layman's terms.
+- I am generally familiar with technology (I now the difference between Linux and MacOS, I sometimes get the jokes in xkcd, I can use a computer without breaking it)
+- I can read code and multiply matrices
+- I can read stats papers and understand them.
+
+Beginner version:
+# A note on terminology
+AI, or "Artificial Intelligence," is an ill-defined term that means "anything that seems smart". People often consider Siri or the Windows chess app to be AIs, even though they're not fundamentally different from other computer programs like Microsoft Word or Google Chrome. But they're called AIs because they seem smart to us. Because the term AI is so broad and poorly defined, it's not very useful for talking about the capabilities of different systems. Instead, we'll focus on machine learning, which is a specific type of AI. ChatGPT, Midjourney, and AlphaGo are all examples of machine learning systems. These days, when people talk about AI, they're usually talking about machine learning (ML).
+
+<md-block>
+# High-level intuition
+
+Before ML, computers could only do tasks if you gave them very specific instructions. If I wanted to have my computer do something like "find all the pictures of my dog in my photo library" or "create a logo for my shoe company," I was out of luck because it was just too hard to write down all the instructions to identify a dog in a picture or to design an aesthetic logo.
+
+ML is any technique for getting computers to do tasks that we don't know how to write down the instructions for. Instead of writing down the instructions, we give the computer a bunch of examples of what we want it to do, and it figures out how to do the task on its own. So instead of explaining to the computer how to identify a dog in a picture, we give it a bunch of pictures of dogs and a bunch of pictures of other things, and we tell it which pictures are of dogs and which aren't. Then the computer figures out how to tell the difference between the two. Instead of explaining to the computer how to design a logo, we give it a bunch of logos and tell it which ones we like and which ones we don't. Then the computer figures out how to design a logo that we like. (Importantly, I don't need to know how to explain how to tell a dog from a cat in order to show the computer examples of dogs and cats and tell it which is which.)
+
+The trick to ML is that even though I don't know how to write down instructions for identifying a dog in a picture or designing a logo, I do know how to write down the instructions for finding the instructions to do the task (given a bunch of examples of what it looks like to do the task well).
+
+That might sound strange at first -- if you can't even write down how to identify a picture of a dog, how could you write down how to learn to identify a picture of a dog? But it's surprisingly possible!
+
+One very simple plan: I could have the computer write down every possible set of instructions for identifying a picture of a dog, and then try each one and see which one works best. Most of the instructions will be complete nonsense and give me a garbled result, but a few of them might end up working. It's akin to getting a thousand monkeys to type on a thousand typewriters for a thousand years until they accidentally write Shakespeare. If you try enough random things, eventually you'll get lucky and find the right answer, so to do a task, you just need to be able to try a lot of things and to tell if you got a good answer. This is called "brute force search."
+
+Unfortunately, there are way too many possible sets of instructions for brute force search to work in practice. But it turns out we don't need to try every possible set of instructions. We can do better. Brute-force search is a little like trying to sculpt a statue of a lion by throwing a bunch of clay on the ground and hoping it winds up looking like a lion. And if it doesn't, just grabbing another lump of clay and trying again and again until you get there. It would be much more efficient if we didn't have to start from scratch every time -- and we don't. Instead, we could keep the parts that looked plausibly lion-shaped and just focus on tweaking the parts that looked the worst. Better yet, we could look at each place we could push or pull our clay and ask ourselves "if I push this part of the clay in, will it make the sculpture look more like a lion or less like a lion?" and then only push the parts that make it look more like a lion.
+
+There are a lot of strategies like this that make ML practical. The most common one is called gradient descent, and it works by using some elegant math to figure out whether pushing on a particular part of the clay will make the sculpture look more like a lion or less like a lion.
+
+That's the basic idea behind ML. We give the computer a bunch of examples of what we want it to do, and it figures out how to do the task on its own. The trick is that we don't need to know how to do the task ourselves -- we just need to know how to find the instructions for doing the task (given a bunch of examples of what it looks like to do the task well).
+
+
+You can try it yourself!
+
+
+
+Trying every 
+
+
+
+Computers are very fast at executing instructions, so it isn't totally crazy to have them list out millions of possible sets of instructions and try them all. Unfortunately, there are so many possible sets of instructions
+
+
+
+This is a bad plan because there are way too many possible sets of instructions to try. But we can do better.
+
+
+
+Intermediate:
+
+# High-level intuition
+
+Often,
+
+Advanced:
+
+Expert:
+</md-block>
+</main>
+
+
+</body>
+
+</html>
