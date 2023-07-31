@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test GPT-4</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://unpkg.com/concrete.css@2.0.3/concrete.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    <main>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dataset">Dataset Questions</a>
+            <a href="/custom">Custom Questions</a>
+        </nav>
+        <h1>Test GPT</h1>
+
+        <p>Enter a question and see if GPT can answer it correctly.</p>
+
+        <textarea id="question" placeholder="Type your question here..." rows="4" cols="50"></textarea>
+        <p>How likely do you think it is that each GPT model can get your question right?</p>
+
+        <div id="model-displays">
+        </div>
+
+
+        <button id="submit">Generate</button>
+        <button id="score-btn" style="display: none;">Calculate Score</button>
+        <p id="score"></p>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>
