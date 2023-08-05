@@ -1,3 +1,5 @@
+const serverless = require('serverless-http');
+
 require('dotenv').config();
 const path = require('path');
 
@@ -15,7 +17,6 @@ app.use(express.static('public'));
 app.use('/static', express.static(path.join(__dirname, 'static')))
 
 
-const openaiApiKey = process.env.OPENAI_API_KEY;
 const huggingfaceToken = process.env.HUGGINGFACE_TOKEN;
 
 const API_URL_BASE = "https://api-inference.huggingface.co/models/";
@@ -135,5 +136,6 @@ async function generateHuggingfaceText(model, prompt) {
     }
 }
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+// app.listen(3000, () => console.log('Server started on port 3000'));
+module.exports = serverless(app);
 
