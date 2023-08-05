@@ -30,18 +30,8 @@ const openai = new OpenAIApi(configuration);
 
 
 
-function generateHuggingfaceText(model, prompt) {
-    const fullPrompt = `Test answer key:\nQuestion: ${prompt}\nAnswer:`;
-    const data = {inputs: fullPrompt, parameters: {return_full_text: false}};
-    try {
-        axios.post(API_URL_BASE + model, data, {
-            headers: {'Authorization': `Bearer ${huggingfaceToken}`}
-        });
-    } catch (error) {
-        console.error(error)
-    }
-        
-}
+
+
 
 const models = {
     "GPT-1": (prompt) => generateHuggingfaceText("openai-gpt", prompt),
@@ -76,15 +66,7 @@ app.post('/generate', async (req, res) => {
         const chatCompletion = await generateText(prompt);
 
 
-        // Check if the response has valid data
-        const hasValidData = chatCompletion.data && chatCompletion.data.choices && chatCompletion.data.choices.length > 0;
-
-        if (!hasValidData) {
-            console.error('Unexpected response:', chatCompletion.data);
-            return res.status(500).send('Unexpected response from model');
-        }
-
-        const content = chatCompletion.data.choices[0].message.content;
+        const content = chatCompletion;
         console.log(content);
         return res.send(content);
 
@@ -99,30 +81,59 @@ app.post('/generate', async (req, res) => {
 app.get('/testOAI', async (req, res) => {
     // const prompt = req.body.prompt;
     try {
-        const chatCompletion = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [{role: "user", content: "Hello, World!"}]
-        });
-        // res.json(chatCompletion.data.choices[0].message);
-        console.log(chatCompletion.data.choices[0].message.content)
+        response = await generateOpenaiText("gpt-3.5-turbo","hello")
+        console.log(response.data.choices[0].message);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
+        res.status(500).send('Error occurred while generating text');
+    }
+});
+
+app.get('/testHug', async (req, res) => {
+    // const prompt = req.body.prompt;
+    try {
+        response = await generateHuggingfaceText("gpt2-xl","hello")
+        // console.log(response.data.choices[0].generated_text);
+    } catch (error) {
+        // console.error(error);
         res.status(500).send('Error occurred while generating text');
     }
 });
 
 async function generateOpenaiText(model, prompt) {
-    console.log("generateOpenaiText",model)
+    console.log("generateOpenaiText", model);
     const chatCompletion = await openai.createChatCompletion({
         model: model,
-        messages: [{role: "user", content: prompt}],
-        temperature: 1,
+        messages: [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: prompt }
+        ],
         max_tokens: 256,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0
     });
-    return chatCompletion;
+    // return chatCompletion;
+
+
+    return chatCompletion.data.choices[0].message.content;
+}
+
+async function generateHuggingfaceText(model, prompt) {
+    console.log(model, prompt)
+    const fullPrompt = `Test answer key:\nQuestion: ${prompt}\nAnswer:`;
+    const data = {inputs: fullPrompt, parameters: {return_full_text: false}};
+    try {
+        const response = await axios.post(API_URL_BASE + model, data, {
+            headers: {'Authorization': `Bearer ${huggingfaceToken}`}
+        });
+        console.log(response.data[0].generated_text)
+        return response.data[0].generated_text;  // return the result
+    } catch (error) {
+        console.error(error);
+        throw error;  // propagate the error so the caller can handle it
+    }
 }
 
 app.listen(3000, () => console.log('Server started on port 3000'));
+
