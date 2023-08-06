@@ -137,6 +137,10 @@ async function generateHuggingfaceText(model, prompt) {
     }
 }
 
+app.get('/test', (req, res) => {
+    res.send('Vercel setup test is successful!');
+});
+
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 
