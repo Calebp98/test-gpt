@@ -42,9 +42,14 @@ const models = {
     "GPT-4": (prompt) => generateOpenaiText("gpt-4", prompt)
 };
 
+// app.get('/', (req, res) => {
+//     res.render('index');
+// });
+
 app.get('/', (req, res) => {
-    res.render('index');
-});
+    res.render('test');
+  });
+
 
 app.get('/dataset', (req, res) => {
     res.render('dataset_qs');

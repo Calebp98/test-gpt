@@ -11,5 +11,6 @@
       "src": "/(.*)",
       "dest": "/server.js"
     }
-  ]
+  ],
+  "timeouts": { "max": 60 }
 }
