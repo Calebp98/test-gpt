@@ -1,4 +1,6 @@
 const serverless = require('serverless-http');
+const port = process.env.PORT || 3000;
+
 
 require('dotenv').config();
 const path = require('path');
@@ -149,6 +151,11 @@ app.get('/test', (req, res) => {
 app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 
-// app.listen(3000, () => console.log('Server started on port 3000'));
-module.exports = serverless(app);
+// // app.listen(3000, () => console.log('Server started on port 3000'));
+// module.exports = serverless(app);
+const server = app.listen(port, () => {
+    console.log(`App listening on port ${port}`)
+  })
+  
+  module.exports = server
 
