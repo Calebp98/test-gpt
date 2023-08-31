@@ -1,4 +1,4 @@
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const port = process.env.PORT || 3000;
 
 
@@ -19,17 +19,6 @@ app.use(express.static('public'));
 app.use('/static', express.static(path.join(__dirname, 'static')))
 
 
-
-const huggingfaceToken = process.env.HUGGINGFACE_TOKEN;
-
-const API_URL_BASE = "https://api-inference.huggingface.co/models/";
-
-const { Configuration, OpenAIApi } = require("openai");
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 
 
@@ -110,6 +99,14 @@ app.get('/testHug', async (req, res) => {
 });
 
 async function generateOpenaiText(model, prompt) {
+    const { Configuration, OpenAIApi } = require("openai");
+
+    const configuration = new Configuration({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+
+
     console.log("generateOpenaiText", model);
     const chatCompletion = await openai.createChatCompletion({
         model: model,
@@ -129,6 +126,14 @@ async function generateOpenaiText(model, prompt) {
 }
 
 async function generateHuggingfaceText(model, prompt) {
+
+
+const huggingfaceToken = process.env.HUGGINGFACE_TOKEN;
+
+const API_URL_BASE = "https://api-inference.huggingface.co/models/";
+
+
+
     console.log(model, prompt)
     const fullPrompt = `Test answer key:\nQuestion: ${prompt}\nAnswer:`;
     const data = {inputs: fullPrompt, parameters: {return_full_text: false}};
@@ -154,8 +159,8 @@ app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 // // app.listen(3000, () => console.log('Server started on port 3000'));
 // module.exports = serverless(app);
 const server = app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
-  })
+    console.log(`Server started on ${port}`); 
+  });
   
-  module.exports = server
-
+  module.exports = server;
+  
